@@ -2,6 +2,14 @@ package com.example.demo.stundent;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+@Entity
+@Table
 public class Student {
     public Student(Long id, String name, String email, LocalDate dob, Integer age) {
         this.id = id;
@@ -45,6 +53,9 @@ public class Student {
     public String toString() {
         return "student [age=" + age + ", dob=" + dob + ", email=" + email + ", id=" + id + ", name=" + name + "]";
     }
+    @Id
+    @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     private Long id;
     private String name;
     private String email;
